@@ -15,12 +15,12 @@ const App = () => {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          {/* <Routes>
+          <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/product" element={<ProductionInformationPage />} />
             <Route path="/option" element={<OptionTablePage />} />
-            <Route path="/item" element={<ItemInformationTablePage />} />s
-          </Routes> */}
+            <Route path="/item" element={<ItemInformationTablePage />} />
+          </Routes>
         </ThemeProvider>
       </BrowserRouter>
     </>
