@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ThemeProvider } from '@emotion/react'
 import { GlobalStyle } from '@style/GlobalStyle'
 import theme from '@style/theme'
@@ -8,6 +8,7 @@ import { OptionTablePage } from '@pages'
 import { ItemInformationTablePage } from '@pages'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 const App = () => {
   return (
@@ -18,8 +19,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/product" element={<ProductionInformationPage />} />
-            <Route path="/option" element={<OptionTablePage />} />
-            <Route path="/item" element={<ItemInformationTablePage />} />
+            {/* <Route path="/option" element={<OptionTablePage />} />
+            <Route path="/item" element={<ItemInformationTablePage />} /> */}
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

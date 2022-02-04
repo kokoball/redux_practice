@@ -2,48 +2,56 @@ import { Input, Table, TableBody } from '@components/base'
 import { CategoryRow, TagRow } from '@components/rows'
 import { ImageContainer } from '@components/domain'
 
-import {
-  useTableDispatch,
-  useTableState,
-} from '@contexts/TableContext/TableProvider'
-import { CHANGE_PRODUCTION_INFORMATION } from '@contexts/TableContext/types'
-import { useContext, useEffect, useState } from 'react'
-import { OptionContext } from '@contexts/OptionContext/OptionProvider'
+// import {
+//   useTableDispatch,
+//   useTableState,
+// } from '@contexts/TableContext/TableProvider'
+
+// import { CHANGE_PRODUCTION_INFORMATION } from '@contexts/TableContext/types'
+// import { useState } from 'react'
 import * as S from './Style'
 
-const ProductionInformation = ({}) => {
-  const { productionInformation } = useTableState()
-  const {
-    productionName,
-    productionDescribe,
-    productionCode,
-    thumbnail,
-    mainImages,
-  } = productionInformation
-  const dispatch = useTableDispatch()
-  const [stock, setStock] = useState(0)
-  const { options } = useContext(OptionContext)
+import { useSelector } from 'react-redux'
+import { changeProudctionInformation } from '../../../actions'
+import { useDispatch } from 'react-redux'
 
-  useEffect(() => {
-    if (options && options[0]) {
-      setStock(options.reduce((acc, { totalStock }) => totalStock + acc, 0))
-    }
-  }, [options])
+const ProductionInformation = ({}) => {
+  const dispatch = useDispatch()
+
+  const { productionName } = useSelector((state) => ({
+    productionName: state.productionName,
+    // productionDescribe: state.productionDescribe,
+    // productionCode: state.productionCode,
+    // thumbnail: state.thumbnail,
+    // mainImages: state.mainImages,
+  }))
+
+  // const { productionInformation } = useTableState()
+  // const {
+  //   productionName,
+  //   productionDescribe,
+  //   productionCode,
+  //   thumbnail,
+  //   mainImages,
+  // } = productionInformation
 
   const handleChange = (e) => {
     const { name, value } = e.target
 
-    dispatch({
-      type: CHANGE_PRODUCTION_INFORMATION,
-      payload: { [name]: value },
-    })
+    dispatch(changeProudctionInformation({ name, value }))
+
+    // dispatch({
+    //   type: CHANGE_PRODUCTION_INFORMATION,
+    //   payload: { [name]: value },
+    // })
   }
   const setImage = (imageType) => {
     return (images) => {
-      dispatch({
-        type: CHANGE_PRODUCTION_INFORMATION,
-        payload: { [imageType]: images },
-      })
+      dispatch(changeProudctionImage({ imageType, images }))
+      // dispatch({
+      //   type: CHANGE_PRODUCTION_INFORMATION,
+      //   payload: { [imageType]: images },
+      // })
     }
   }
 
@@ -51,11 +59,9 @@ const ProductionInformation = ({}) => {
     <>
       <Table thead={'상품 기본 정보'}>
         <TableBody title={'카테고리*'} width="100%">
-          <CategoryRow />
+          {/* <CategoryRow /> */}
         </TableBody>
-        <TableBody title={'필터 태그'}>
-          <TagRow />
-        </TableBody>
+        <TableBody title={'필터 태그'}>{/* <TagRow /> */}</TableBody>
         <TableBody title={'상품명*'}>
           <S.Row>
             <Input
@@ -66,13 +72,13 @@ const ProductionInformation = ({}) => {
               width={250}
               required={true}
             />
-            <S.ProductionCode>
+            {/* <S.ProductionCode>
               <S.Head>상품 코드</S.Head>
               <S.Contents>{productionCode}</S.Contents>
-            </S.ProductionCode>
+            </S.ProductionCode> */}
           </S.Row>
         </TableBody>
-        <TableBody title={'상품 구성 소개 정보*'}>
+        {/* <TableBody title={'상품 구성 소개 정보*'}>
           <Input
             onChange={handleChange}
             value={productionDescribe}
@@ -93,8 +99,7 @@ const ProductionInformation = ({}) => {
             itemList={mainImages}
             setItemList={setImage('mainImages')}
           />
-        </TableBody>
-        <TableBody title={'상품 총 재고*'}>{stock}개</TableBody>
+        </TableBody> */}
       </Table>
     </>
   )
