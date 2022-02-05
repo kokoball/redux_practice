@@ -13,19 +13,19 @@ import * as S from './Style'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { changeProudctionInformation } from '../../../actions'
+import { useEffect } from 'react'
 
 const ProductionInformation = ({}) => {
   const dispatch = useDispatch()
 
-  const { production } = useSelector((state) => ({
-    productionName: state.productionName,
+  const { categories } = useSelector((state) => ({
+    // productionName: state.productionName,
     categories: state.categories,
     // productionDescribe: state.productionDescribe,
     // productionCode: state.productionCode,
     // thumbnail: state.thumbnail,
     // mainImages: state.mainImages,
   }))
-  console.log(production, 777)
 
   // const { productionInformation } = useTableState()
   // const {
@@ -37,7 +37,9 @@ const ProductionInformation = ({}) => {
   // } = productionInformation
 
   const handleChange = (e) => {
+    console.log(12344)
     const { name, value } = e.target
+    console.log(name, value, 12314)
 
     dispatch(changeProudctionInformation({ name, value }))
 
@@ -60,26 +62,28 @@ const ProductionInformation = ({}) => {
     <>
       <Table thead={'상품 기본 정보'}>
         <TableBody title={'카테고리*'} width="100%">
-          {/* <CategoryRow production={production} /> */}
+          <CategoryRow categories={categories} />
         </TableBody>
-        <TableBody title={'필터 태그'}>{/* <TagRow /> */}</TableBody>
+        {/* <TableBody title={'필터 태그'}>
+          <TagRow />
+        </TableBody>
         <TableBody title={'상품명*'}>
           <S.Row>
             <Input
               placeholder={'상품명을 입력해 주세요.'}
-              value={production}
+              value={1}
               name={'productionName'}
               onChange={handleChange}
               width={250}
               required={true}
             />
-            {/* <S.ProductionCode>
+            <S.ProductionCode>
               <S.Head>상품 코드</S.Head>
               <S.Contents>{productionCode}</S.Contents>
-            </S.ProductionCode> */}
+            </S.ProductionCode>
           </S.Row>
         </TableBody>
-        {/* <TableBody title={'상품 구성 소개 정보*'}>
+        <TableBody title={'상품 구성 소개 정보*'}>
           <Input
             onChange={handleChange}
             value={productionDescribe}

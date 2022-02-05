@@ -11,12 +11,13 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   if (action.type === 'setProductions') {
-    const { productions } = action.payload
+    const { categories } = action.payload
     return {
       ...state,
-      productions,
+      categories,
     }
   }
+
   if (action.type === 'changeProudctionInformation') {
     const { name, value } = action.payload
     return {

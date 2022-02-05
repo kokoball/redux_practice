@@ -1,18 +1,11 @@
 import * as S from './Style'
 import { CheckBox, Box } from '@components/base'
-import {
-  useTableDispatch,
-  useTableState,
-} from '@contexts/TableContext/TableProvider'
-import { CHANGE_PRODUCTION_INFORMATION } from '@contexts/TableContext/types'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { setProductions } from '../../../actions'
 
-const CategoryRow = ({ production }) => {
+const CategoryRow = ({ categories }) => {
   const dispatch = useDispatch()
-
-  const { categories } = production.categories
-  // const dispatch = useTableDispatch()
 
   const removeCategory = (name) => {
     const nextCategories = categories.map((category) =>
@@ -21,16 +14,13 @@ const CategoryRow = ({ production }) => {
         : { ...category, checked: !category.checked },
     )
 
-    dispatch({
-      type: CHANGE_PRODUCTION_INFORMATION,
-      payload: { categories: nextCategories },
-    })
+    dispatch(setProductions(nextCategories))
   }
 
   return (
     <S.CategoryRowWrapper>
       <Box width={'50%'} height={300}>
-        <CheckBox categories={categories} dispatch={dispatch} />
+        <CheckBox categories={categories} />
       </Box>
       <Box width={'50%'} height={300}>
         <S.SelectedCategories>

@@ -1,19 +1,21 @@
 import PropTypes from 'prop-types'
 import * as S from './Style'
-import { CHANGE_PRODUCTION_INFORMATION } from '../../../contexts/TableContext/types'
 
-const CheckBox = ({ categories, dispatch }) => {
+import { useDispatch } from 'react-redux'
+import { setProductions } from '../../../actions'
+
+const CheckBox = ({ categories }) => {
+  const dispatch = useDispatch()
+
   const checkHandler = ({ target }) => {
     const nextCategories = categories.map((category) =>
       category.name === target.value
         ? { ...category, checked: !category.checked }
         : category,
     )
+    console.log(nextCategories)
 
-    dispatch({
-      type: CHANGE_PRODUCTION_INFORMATION,
-      payload: { categories: nextCategories },
-    })
+    dispatch(setProductions(nextCategories))
   }
 
   return (
