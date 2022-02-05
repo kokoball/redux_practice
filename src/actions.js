@@ -1,3 +1,22 @@
+import fetchCategories from './services/api'
+
+export function setProductions(categories) {
+  return {
+    type: 'setProductions',
+    payload: {
+      categories,
+    },
+  }
+}
+
+export function loadProductions() {
+  return async (dispatch) => {
+    const categories = await fetchCategories()
+
+    dispatch(setProductions(categories))
+  }
+}
+
 export function changeProudctionInformation({ name, value }) {
   return {
     // const { name, value } = e.target;

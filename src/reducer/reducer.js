@@ -1,65 +1,22 @@
-// import {
-//   CHANGE_DELIVERY_SETTING,
-//   CHANGE_OTHER_SETTING,
-//   CHANGE_PERIOD,
-//   CHANGE_PRODUCTION_BENEFIT,
-//   CHANGE_PRODUCTION_IMAGES,
-//   CHANGE_PRODUCTION_INFORMATION,
-//   CHANGE_RECOMMEND_IMAGES,
-// } from './types'
-
 const initialState = {
   // productionInformation: {
-  categories: [
-    { name: '카테고리1', checked: false },
-    { name: '카테고리2', checked: false },
-    { name: '카테고리3', checked: false },
-    { name: '카테고리4', checked: false },
-    { name: '카테고리5', checked: false },
-    { name: '카테고리6', checked: false },
-    { name: '카테고리7', checked: false },
-    { name: '카테고리8', checked: false },
-    { name: '카테고리9', checked: false },
-  ],
+  categories: [],
   tags: [],
   productionName: '',
   productionDescribe: '',
   productionCode: Date.now(),
   thumbnail: [],
   mainImages: [],
-  // },
-  // period: {
-  //   expose: {
-  //     type: 'false',
-  //     startDate: '',
-  //     endDate: '',
-  //   },
-  //   sell: {
-  //     type: 'false',
-  //     startDate: '',
-  //     endDate: '',
-  //   },
-  // },
-  // productionImages: {
-  //   productionImages: [],
-  // },
-  // recommendImages: {
-  //   recommendImages: [],
-  // },
-  // deliverySetting: {
-  //   isSetDeliveryDate: false,
-  //   isVisit: false,
-  //   preOrder: {
-  //     dawn: [],
-  //     normal: [],
-  //   },
-  // },
-  // productionBenefit: false,
-  // otherSetting: false,
-  // 나중에 지우기
 }
 
 export default function reducer(state = initialState, action) {
+  if (action.type === 'setProductions') {
+    const { productions } = action.payload
+    return {
+      ...state,
+      productions,
+    }
+  }
   if (action.type === 'changeProudctionInformation') {
     const { name, value } = action.payload
     return {

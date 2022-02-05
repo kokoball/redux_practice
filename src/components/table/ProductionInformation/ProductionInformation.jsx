@@ -11,20 +11,21 @@ import { ImageContainer } from '@components/domain'
 // import { useState } from 'react'
 import * as S from './Style'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { changeProudctionInformation } from '../../../actions'
-import { useDispatch } from 'react-redux'
 
 const ProductionInformation = ({}) => {
   const dispatch = useDispatch()
 
-  const { productionName } = useSelector((state) => ({
+  const { production } = useSelector((state) => ({
     productionName: state.productionName,
+    categories: state.categories,
     // productionDescribe: state.productionDescribe,
     // productionCode: state.productionCode,
     // thumbnail: state.thumbnail,
     // mainImages: state.mainImages,
   }))
+  console.log(production, 777)
 
   // const { productionInformation } = useTableState()
   // const {
@@ -59,14 +60,14 @@ const ProductionInformation = ({}) => {
     <>
       <Table thead={'상품 기본 정보'}>
         <TableBody title={'카테고리*'} width="100%">
-          {/* <CategoryRow /> */}
+          {/* <CategoryRow production={production} /> */}
         </TableBody>
         <TableBody title={'필터 태그'}>{/* <TagRow /> */}</TableBody>
         <TableBody title={'상품명*'}>
           <S.Row>
             <Input
               placeholder={'상품명을 입력해 주세요.'}
-              value={productionName}
+              value={production}
               name={'productionName'}
               onChange={handleChange}
               width={250}

@@ -6,10 +6,13 @@ import {
 } from '@contexts/TableContext/TableProvider'
 import { CHANGE_PRODUCTION_INFORMATION } from '@contexts/TableContext/types'
 
-const CategoryRow = ({}) => {
-  const { productionInformation } = useTableState()
-  const { categories } = productionInformation
-  const dispatch = useTableDispatch()
+import { useSelector, useDispatch } from 'react-redux'
+
+const CategoryRow = ({ production }) => {
+  const dispatch = useDispatch()
+
+  const { categories } = production.categories
+  // const dispatch = useTableDispatch()
 
   const removeCategory = (name) => {
     const nextCategories = categories.map((category) =>

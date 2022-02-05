@@ -1,0 +1,13 @@
+{
+  "categories": [
+    { "name": "카테고리1", "checked": false },
+    { "name": "카테고리2", "checked": false },
+    { "name": "카테고리3", "checked": false },
+    { "name": "카테고리4", "checked": false },
+    { "name": "카테고리5", "checked": false },
+    { "name": "카테고리6", "checked": false },
+    { "name": "카테고리7", "checked": false },
+    { "name": "카테고리8", "checked": false },
+    { "name": "카테고리9", "checked": false }
+  ]
+}
