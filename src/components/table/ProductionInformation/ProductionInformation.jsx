@@ -19,14 +19,16 @@ const ProductionInformation = ({}) => {
   const dispatch = useDispatch()
 
   const { categories } = useSelector((state) => ({
-    // productionName: state.productionName,
     categories: state.categories,
+  }))
+  const { tags } = useSelector((state) => ({
+    // productionName: state.productionName,
+    tags: state.tags,
     // productionDescribe: state.productionDescribe,
     // productionCode: state.productionCode,
     // thumbnail: state.thumbnail,
     // mainImages: state.mainImages,
   }))
-
   // const { productionInformation } = useTableState()
   // const {
   //   productionName,
@@ -37,9 +39,7 @@ const ProductionInformation = ({}) => {
   // } = productionInformation
 
   const handleChange = (e) => {
-    console.log(12344)
     const { name, value } = e.target
-    console.log(name, value, 12314)
 
     dispatch(changeProudctionInformation({ name, value }))
 
@@ -62,12 +62,12 @@ const ProductionInformation = ({}) => {
     <>
       <Table thead={'상품 기본 정보'}>
         <TableBody title={'카테고리*'} width="100%">
-          <CategoryRow categories={categories} />
+          {/* <CategoryRow categories={categories} /> */}
         </TableBody>
-        {/* <TableBody title={'필터 태그'}>
-          <TagRow />
+        <TableBody title={'필터 태그'}>
+          <TagRow tags={tags} />
         </TableBody>
-        <TableBody title={'상품명*'}>
+        {/* <TableBody title={'상품명*'}>
           <S.Row>
             <Input
               placeholder={'상품명을 입력해 주세요.'}

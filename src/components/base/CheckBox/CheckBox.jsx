@@ -13,7 +13,6 @@ const CheckBox = ({ categories }) => {
         ? { ...category, checked: !category.checked }
         : category,
     )
-    console.log(nextCategories)
 
     dispatch(setProductions(nextCategories))
   }

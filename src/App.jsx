@@ -10,7 +10,7 @@ import { ItemInformationTablePage } from '@pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-import { loadProductions } from './actions'
+import { loadProductions, loadTags } from './actions'
 
 const App = () => {
   // const categories = fetchCategories()
@@ -20,6 +20,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(loadProductions())
+    dispatch(loadTags())
   }, [])
 
   return (

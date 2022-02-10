@@ -7,12 +7,17 @@ import useFetch from '@hooks/useFetch'
 import { useTableDispatch } from '@contexts/TableContext/TableProvider'
 import { CHANGE_PRODUCTION_INFORMATION } from '@contexts/TableContext/types'
 
+import { useDispatch } from 'react-redux'
+import { changeProductionsTags } from '../../../actions'
+
 const TagSearchModal = ({ selectedTags, removeTag }) => {
+  console.log(selectedTags)
   const { tags } = useFetch('tags.json')
   const [keyword, setKeyword] = useState('')
   const [filteredTags, setFilteredTags] = useState([])
   const debounce = useCallback(debounceGenerator(400), [])
-  const dispatch = useTableDispatch()
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (!tags) {
@@ -29,17 +34,14 @@ const TagSearchModal = ({ selectedTags, removeTag }) => {
 
   const addTag = (e) => {
     const nextTag = e.target.innerHTML
+    console.log(nextTag)
+    console.log(selectedTags) // 요기 확인
+    console.log(~selectedTags)
     if (~selectedTags.findIndex((tag) => tag === nextTag)) {
-      dispatch({
-        type: CHANGE_PRODUCTION_INFORMATION,
-        payload: { selectedTags },
-      })
+      dispatch(changeProductionsTags(changeTags))
       return
     }
-    dispatch({
-      type: CHANGE_PRODUCTION_INFORMATION,
-      payload: { tags: [...selectedTags, nextTag] },
-    })
+    dispatch(changeProductionsTags(nextTag))
   }
 
   const handleChange = (e) => {

@@ -5,17 +5,17 @@ import {
 } from '@contexts/TableContext/TableProvider'
 import { CHANGE_PRODUCTION_INFORMATION } from '@contexts/TableContext/types'
 
-const TagRow = ({}) => {
-  const { productionInformation } = useTableState()
-  const { tags } = productionInformation
-  const dispatch = useTableDispatch()
+import { useDispatch } from 'react-redux'
+import { changeProductionsTags } from '../../../actions'
+
+const TagRow = ({ tags }) => {
+  const dispatch = useDispatch()
 
   const removeTag = (e) => {
     const removedTag = e.target.innerHTML
-    dispatch({
-      type: CHANGE_PRODUCTION_INFORMATION,
-      payload: { tags: tags.filter((tag) => tag !== removedTag) },
-    })
+    const changeTags = tags.filter((tag) => tag !== removedTag)
+
+    dispatch(changeProductionsTags(changeTags))
   }
 
   return (

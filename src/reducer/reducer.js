@@ -17,6 +17,20 @@ export default function reducer(state = initialState, action) {
       categories,
     }
   }
+  if (action.type === 'setTags') {
+    const { tags } = action.payload
+    return {
+      ...state,
+      tags,
+    }
+  }
+  if (action.type === 'changeProductionsTags') {
+    const { tags } = action.payload
+    return {
+      ...state,
+      tags,
+    }
+  }
 
   if (action.type === 'changeProudctionInformation') {
     const { name, value } = action.payload

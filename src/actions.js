@@ -1,4 +1,4 @@
-import fetchCategories from './services/api'
+import { fetchCategories, fetchTags } from './services/api'
 
 export function setProductions(categories) {
   return {
@@ -8,12 +8,37 @@ export function setProductions(categories) {
     },
   }
 }
+export function setTags(tags) {
+  return {
+    type: 'setTags',
+    payload: {
+      tags,
+    },
+  }
+}
+
+export function changeProductionsTags(tags) {
+  return {
+    type: 'setProductions',
+    payload: {
+      tags,
+    },
+  }
+}
 
 export function loadProductions() {
   return async (dispatch) => {
     const categories = await fetchCategories()
 
     dispatch(setProductions(categories))
+  }
+}
+
+export function loadTags() {
+  return async (dispatch) => {
+    const tags = await fetchTags()
+
+    dispatch(setTags(tags))
   }
 }
 
